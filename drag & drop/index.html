@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Hvem er Mulans kæreste?</title>
+  <link rel="stylesheet" href="css/css.css">
+
+</head>
+<body>
+  <div class="overskift">
+    <h1>Hvem er Mulans kæreste?</h1>
+  </div>
+
+  <script>
+    var originalPositions = {}; // Oprindelige positioner af billederne
+  
+    // Gem de oprindelige positioner af billederne
+    function storeOriginalPositions() {
+      var images = document.querySelectorAll('img');
+      images.forEach(function(img) {
+        originalPositions[img.id] = img.parentElement; // Gem forældreelementet (div) som oprindelig position
+      });
+    }
+  
+    // Kald funktionen når siden indlæses
+    window.onload = storeOriginalPositions;
+  
+    function allowDrop(ev) {
+      ev.preventDefault();
+    }
+  
+    function drag(ev) {
+      ev.dataTransfer.setData("text", ev.target.id);
+    }
+  
+    function drop(ev) {
+      ev.preventDefault();
+      var data = ev.dataTransfer.getData("text");
+      var targetDiv = ev.target;
+      var messageDiv = targetDiv.nextElementSibling;
+  
+      targetDiv.appendChild(document.getElementById(data));
+  
+      // Hvis det er det rigtige svar
+      if (data === "drag3") {
+        targetDiv.style.backgroundColor = "green"; // Grøn for rigtigt svar
+        messageDiv.textContent = "Det er det rigtige svar!";
+        messageDiv.style.color = "green";
+  
+        // Vis "Videre"-knappen under billedet
+        document.getElementById('nextButton').style.display = "block"; // Gør knappen synlig
+      } else {
+        targetDiv.style.backgroundColor = "red"; // Rød for forkert svar
+        messageDiv.textContent = "Forkert!";
+        messageDiv.style.color = "red";
+  
+
+        setTimeout(function() {
+          var image = document.getElementById(data);
+          var originalParent = originalPositions[data]; // Hent den oprindelige position
+          originalParent.appendChild(image); // Flyt billedet tilbage
+          targetDiv.style.backgroundColor = ""; // Fjern baggrundsfarve
+          messageDiv.textContent = ""; // Fjern besked
+        }, 1000); // Vent 1 sekund før billede vendes tilbage
+      }
+    }
+  
+    function nextPage() {
+    window.location.href = "nextPage.html"; // Erstat "nextPage.html" med den ønskede URL
+    }
+
+  </script>
+  
+
+  <div class="container">
+    <img src="images/Mulan.webp" width="300" height="300" alt="Mulan">
+    <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <div id="message1" class="message"></div> 
+  </div>
+
+    <!-- Skjult videre-knap under billedet -->
+    <button id="nextButton" style="display:none; margin-top: 20px;" onclick="nextPage()">Videre</button>
+  </div>
+
+  <div class="image-container">
+    <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <div id="message2" class="message"></div> 
+    <br>
+    <img id="drag2" src="images/random guy.webp" draggable="true" ondragstart="drag(event)" width="200" height="200" alt="Random guy">
+
+    <div id="div3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <div id="message3" class="message"></div> 
+    <br>
+    <img id="drag3" src="images/boyfriend.webp" draggable="true" ondragstart="drag(event)" width="200" height="200" alt="Boyfriend">
+
+    <div id="div4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <div id="message4" class="message"></div> 
+    <br>
+    <img id="drag4" src="images/badguy.webp" draggable="true" ondragstart="drag(event)" width="200" height="200" alt="Bad guy">
+
+    <div id="div5" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <div id="message5" class="message"></div> 
+    <br>
+    <img id="drag5" src="images/mulanguy.webp" draggable="true" ondragstart="drag(event)" width="200" height="200" alt="Mulan guy">
+  </div>
+
+</body>
+</html>
+

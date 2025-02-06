@@ -1,0 +1,64 @@
+/**
+ * file: css/css.css
+ * purpose: styling
+ **/
+
+ body {
+  background-color: rgb(227, 217, 204);
+}
+
+ .container {
+  display: flex; /* Gør elementerne side om side */
+  flex-wrap: wrap;
+  align-items: center; /* Justerer dem vertikalt */
+  margin-left: 400px;
+  gap: 30px; /* Afstand mellem div1 og billedet */
+  margin-top: 50px;
+}
+
+.image-container {
+  display: flex; /* Placerer billederne på en række */
+  flex-wrap: wrap;
+  justify-content: center; /* Centrerer dem på skærmen */
+  gap: 15px; /* Laver lidt mellemrum mellem billederne */
+  margin-top: 50px;
+}
+
+.overskift {
+  display: flex;
+  justify-content: center;
+  color:rgb(21, 70, 53);
+  font-size: 1.5rem;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#div1 {
+  width: 200px;
+  height: 200px;
+  padding: 10px;
+  border: 3px solid #4f855c;
+}
+
+#message {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#nextButton {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+  margin-left: 670px;
+  width: 10%; /* For at knappen strækker sig over hele bredden */
+  text-align: center; /* Hvis du ønsker at centrere teksten */
+}
+
+#nextButton:hover {
+  background-color: #45a049;
+}
